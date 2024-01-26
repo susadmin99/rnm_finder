@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/styles/style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <h1>Home page</h1>
+    <br>
+
+    <label for="search">Search Character:</label>
+    <input type="text" id="search" onchange="searchCharacters()" placeholder="Enter character name...">
+
+    <table border="1" id="characterTable" style="margin: auto;width: 80%;">
+        <tr>
+            <th>Avatar</th>
+            <th>Name</th>
+            <th>Species</th>
+            <th>Status</th>
+        </tr>
+
+        {% for data in datas['results'] %}
+        <tr>
+            <td class="avatarImg"><img src=" {{ data['image'] }} "></td>
+            <td><a href="{{ url_for('views.profile', name=data['name'], uri=datas['info']['next']) }} "> {{ data['name'] }} </a></td>
+            <td><p> {{ data['species'] }} </p></td>
+            <td><p> {{ data['status'] }} </p></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Pagination links -->
+    {% if datas['info']['prev'] %}
+    <a href="{{ url_for('views.home', page=datas['info']['prev'].split('=')[-1]) }}">Previous</a>
+    {% endif %}
+    <p>{{ page }}</p>
+    {% if datas['info']['next'] %}
+    <a href="{{ url_for('views.home', page=datas['info']['next'].split('=')[-1]) }}">Next</a>
+    {% endif %}
+
+    
+
+    <script type="text/javascript" src="{{url_for('static', filename='search.js')}}"></script>
+</body>
+</html>

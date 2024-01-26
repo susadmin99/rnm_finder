@@ -1,0 +1,9 @@
+.avatarTd {
+    text-align: center;
+    width: 64px;
+}
+
+img {
+    width: auto;
+    height: 64px;
+}

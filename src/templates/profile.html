@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile</h1>
+    <br>
+    <a href="{{ url_for('views.home') }}">Next</a>
+    <br>
+    <table border="1">
+        <tr>
+            <th> Name </th>
+            <th> Status </th>
+            <th> Species </th>
+            <th> Type </th>
+            <th> Gender </th>
+            <th> Origin </th>
+        </tr>
+
+        <tr>
+            <td>{{ character['name'] }}  </td>
+            <td>{{ character['status'] }}  </td>
+            <td>{{ character['species'] }}  </td>
+            <td>{{ character['type'] }}  </td>
+            <td>{{ character['gender'] }}  </td>
+            <td>{{ character['origin']['name'] }}  </td>
+            <td> <img src="{{ character['image'] }}" alt=""> </td>
+        </tr>
+    </table>  
+</body>
+</html>

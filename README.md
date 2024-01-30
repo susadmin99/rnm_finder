@@ -1,4 +1,5 @@
 Rick and Morty character finder.
+Website: 
 
 API I used in the project: https://rickandmortyapi.com/
 
@@ -9,3 +10,6 @@ Project uses Python with Flask for the backend part and html, css, javascript an
 I chose python and flask because for a long time I wanted to try the python backed webapp.
 
 Currently I know about one feature which is not added yet to the project and that it's can't do character search on the whole API but it can only search from characters listed in the table's current page.
+
+How to run the project: 
+1. 

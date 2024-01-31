@@ -5,43 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="/static/styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <title>Document</title>
+    <title>RnM Character Finder</title>
 </head>
+
 <body>
-    <h1>Home page</h1>
-    <br>
 
-    <label for="search">Search Character:</label>
-    <input type="text" id="search" onchange="searchCharacters()" placeholder="Enter character name...">
+    <!-- Header -->
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+            <h1 class="title is-1">Rick and Morty Character Finder</h1>
+            <h2 class="title is-2 is-pulled-right">Home</h2>
 
-    <table border="1" id="characterTable" style="margin: auto;width: 80%;">
-        <tr>
-            <th>Avatar</th>
-            <th>Name</th>
-            <th>Species</th>
-            <th>Status</th>
-        </tr>
+            <!-- Search Bar -->
+            <div class="field has-addons">
+                <div class="control">
+                <input class="input" id="search" type="text" placeholder="Search character..." onchange="searchCharacters()">
+                </div>
+                <div class="control">
+                <button class="button is-info" onclick="searchCharacters()">
+                    <i class="material-icons">search</i>
+                </button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
 
-        {% for data in datas['results'] %}
-        <tr>
-            <td class="avatarImg"><img src=" {{ data['image'] }} "></td>
-            <td><a href="{{ url_for('views.profile', name=data['name'], uri=datas['info']['next']) }} "> {{ data['name'] }} </a></td>
-            <td><p> {{ data['species'] }} </p></td>
-            <td><p> {{ data['status'] }} </p></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <section class="section">
+        <!-- Pagination above the table -->
+        <div class="container">
+        <div class="pagination-container">
+            {% if datas['info']['prev'] %}
+            <a href="{{ url_for('views.home', page=datas['info']['prev'].split('=')[-1]) }}"><i class="material-icons">navigate_before</i></a>
+            {% endif %}
+            <span id="currentPage">{{ page }}</span>
+            {% if datas['info']['next'] %}
+            <a href="{{ url_for('views.home', page=datas['info']['next'].split('=')[-1]) }}"><i class="material-icons">navigate_next</i></a>
+            {% endif %}
+        </div>
+        </div>
 
-    <!-- Pagination links -->
-    {% if datas['info']['prev'] %}
-    <a href="{{ url_for('views.home', page=datas['info']['prev'].split('=')[-1]) }}">Previous</a>
-    {% endif %}
-    <p>{{ page }}</p>
-    {% if datas['info']['next'] %}
-    <a href="{{ url_for('views.home', page=datas['info']['next'].split('=')[-1]) }}">Next</a>
-    {% endif %}
+        <!-- Table -->
+        <div class="container">
+            <table class="table is-fullwidth" id="characterTable" style="margin: auto;width: 80%;">
+                <tr>
+                    <th>Avatar</th>
+                    <th>Name</th>
+                    <th>Species</th>
+                    <th>Status</th>
+                </tr>
+        
+                {% for data in datas['results'] %}
+                <tr>
+                    <td class="avatarTd"><img src=" {{ data['image'] }} "></td>
+                    <td><a href="{{ url_for('views.profile', id=data['id'], uri=datas['info']['next']) }} "> {{ data['name'] }} </a></td>
+                    <td><p> {{ data['species'] }} </p></td>
+                    <td><p class="tag {{ data['status'].split('/')[1] }}"> {{ data['status'].split('/')[0] }} </p></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+  
+        <!-- Pagination below the table -->
+        <div class="container">
+            <div class="pagination-container">
+            {% if datas['info']['prev'] %}
+            <a href="{{ url_for('views.home', page=datas['info']['prev'].split('=')[-1]) }}"><i class="material-icons">navigate_before</i></a>
+            {% endif %}
+            <span id="currentPage">{{ page }}</span>
+            {% if datas['info']['next'] %}
+            <a href="{{ url_for('views.home', page=datas['info']['next'].split('=')[-1]) }}"><i class="material-icons">navigate_next</i></a>
+            {% endif %}
+            </div>
+        </div>
+    </section>
+    
+    <footer>
 
+    </footer>
     
 
     <script type="text/javascript" src="{{url_for('static', filename='search.js')}}"></script>

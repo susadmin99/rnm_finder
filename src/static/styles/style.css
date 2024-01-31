@@ -1,9 +1,16 @@
 .avatarTd {
     text-align: center;
-    width: 64px;
+    width: 90px;
 }
 
 img {
     width: auto;
     height: 64px;
 }
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+  }

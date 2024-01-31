@@ -3,32 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <link rel="stylesheet" href="/static/styles/profile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>RnM Character Finder - Profile</title>
 </head>
 <body>
-    <h1>Profile</h1>
-    <br>
-    <a href="{{ url_for('views.home') }}">Next</a>
-    <br>
-    <table border="1">
-        <tr>
-            <th> Name </th>
-            <th> Status </th>
-            <th> Species </th>
-            <th> Type </th>
-            <th> Gender </th>
-            <th> Origin </th>
-        </tr>
 
-        <tr>
-            <td>{{ character['name'] }}  </td>
-            <td>{{ character['status'] }}  </td>
-            <td>{{ character['species'] }}  </td>
-            <td>{{ character['type'] }}  </td>
-            <td>{{ character['gender'] }}  </td>
-            <td>{{ character['origin']['name'] }}  </td>
-            <td> <img src="{{ character['image'] }}" alt=""> </td>
-        </tr>
-    </table>  
+    <!-- Header -->
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+            <h1 class="title">Rick and Morty Character Finder</h1>
+              <h2 class="title is-2 is-pulled-right">Profile</h2>
+        </div>
+    </section>
+
+    <br>
+    <div class="buttons is-centered">
+        <a class="button is-info" href="{{ url_for('views.home', page=uri.split('=')[-1]) }}">Back to Home</a> <!--It goes back to the exact site it came from-->
+    </div>
+
+    <section class="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <!-- Profile Card -->
+              <div class="card">
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-128x128">
+                        <img src="{{ character['image'] }}" alt="Avatar">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4">{{ character['name'] }}</p>
+                      <p class="subtitle is-6">Status: <span class="tag {{ character['status'].split('/')[1] }}">{{ character['status'].split('/')[0] }}</span></p>
+                    </div>
+                  </div>
+    
+                  <div class="content">
+                    <p><strong>Species:</strong> {{ character['species'] }}</p>
+                    <p><strong>Type:</strong> {{ character['type'] }}</p>
+                    <p><strong>Gender:</strong> {{ character['gender'] }}</p>
+                    <p><strong>Origin:</strong> {{ character['origin']['name'] }}</p>
+
+                    <div id="additionalInfoContainer">
+                        <p><strong>Episodes:</strong> {{ episodesCount }}</p>
+                        <button id="toggleButton" class="button is-primary">Show Episodes</button>
+                        <ul id="episodes">
+                            {% for episode in episodes %}
+                            {{ episode.strip('"') }}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    
+    
+    <footer>
+
+    </footer>
+
+    <script type="text/javascript" src="{{url_for('static', filename='episodes.js')}}"></script>
 </body>
 </html>

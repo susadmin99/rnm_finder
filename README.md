@@ -1,5 +1,5 @@
 Rick and Morty character finder.
-Website: 
+
 
 API I used in the project: https://rickandmortyapi.com/
 

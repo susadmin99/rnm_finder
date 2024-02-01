@@ -6,7 +6,7 @@ function searchCharacters() {
     table = document.getElementById("characterTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1]; //Get the td with the name in it
+        td = tr[i].getElementsByTagName("td")[1];
         if (td) {
             txtValue = td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {

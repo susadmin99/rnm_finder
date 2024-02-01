@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 const toggleButton = document.getElementById('toggleButton');
-const additionalInfoList = document.getElementById('episodes');
-const hiddenItems = document.querySelectorAll('.hidden');
+const episodesList = document.getElementById('episodes');
+const hiddenEpisodes = document.querySelectorAll('.hidden');
 
-// Function to toggle visibility of additional items
-function toggleAdditionalItems() {
-    hiddenItems.forEach(item => {
+  function toggleEpisodes() {
+    hiddenEpisodes.forEach(item => {
       item.classList.toggle('hidden');
     });
 
@@ -16,8 +15,6 @@ function toggleAdditionalItems() {
     }
   }
 
-
-// Event listener for the toggle button
-toggleButton.addEventListener('click', toggleAdditionalItems);
+toggleButton.addEventListener('click', toggleEpisodes);
 
 });

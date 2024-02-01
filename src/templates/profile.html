@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header with the title and the current page text-->
     <section class="hero is-primary">
         <div class="hero-body">
             <div class="container">
@@ -23,6 +23,7 @@
     </section>
 
     <br>
+
     <div class="buttons is-centered">
         <a class="button is-info" href="{{ url_for('views.home', page=uri.split('=')[-1]) }}">Back to Home</a> <!--It goes back to the exact site it came from-->
     </div>
@@ -31,7 +32,7 @@
         <div class="container">
           <div class="columns is-centered">
             <div class="column is-half">
-              <!-- Profile Card -->
+              <!-- Character card which contains all the important information about the selected character -->
               <div class="card">
                 <div class="card-content">
                   <div class="media">
@@ -52,7 +53,7 @@
                     <p><strong>Gender:</strong> {{ character['gender'] }}</p>
                     <p><strong>Origin:</strong> {{ character['origin']['name'] }}</p>
 
-                    <div id="additionalInfoContainer">
+                    <div id="episodesContainer">
                         <p><strong>Episodes:</strong> {{ episodesCount }}</p>
                         <button id="toggleButton" class="button is-primary">Show Episodes</button>
                         <ul id="episodes">

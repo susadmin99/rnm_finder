@@ -12,9 +12,12 @@ I chose python and flask because for a long time I wanted to try the python back
 Currently I know about one feature which is not added yet to the project and that it's can't do character search on the whole API but it can only search from characters listed in the table's current page.
 
 How to run the project: 
-1. Download the project
-2. Run app.py (inside the src directory) (it starts the webserver)
-3. Open local address with the port number:7342 (site: 127.0.0.1:7342)
+1. In order to run the project a few libraries are necessary
+    1. Flask (pip3 install flask)
+    2. Requests (pip3 install requests)
+2. Download the project
+3. Run app.py (inside the src directory) (it starts the webserver)
+4. Open local address with the port number:7342 (site: 127.0.0.1:7342)
     1. If you'd like to use different port number, you can change it in the app.py
 
 Test cases:
